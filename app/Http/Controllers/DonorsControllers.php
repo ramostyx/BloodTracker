@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Donor;
 use App\Models\Address;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules;
 
 class DonorsControllers extends Controller
 {
@@ -18,41 +20,39 @@ class DonorsControllers extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
-            'name' => 'required',
-            'phoneNumber' => 'required|numeric|digits:10',
-            'password' => 'required|confirmed|min:8',
-            'password_confirmation' => 'required|same:password',
-            'email' => ['required', 'email', Rule::unique('Users', 'email')],
-            'street' => 'required|string',
-            'city' => 'required|string',
-            'country' => 'required|string',
-            'province' => 'required|string|max:255',
-            'zipCode' => 'required|numeric|digits:5',
-            'bloodType' => 'required|string',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'phoneNumber' => ['required'],
+            'country' => ['required', 'string', 'max:20'],
+            'city' => ['required', 'string', 'max:20'],
+            'zipCode' => ['required', 'string', 'max:20'],
+            'province' => ['required', 'string', 'max:20'],
+            'street' => ['required', 'string', 'max:20'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'bloodType' => ['required', 'string'],
 
         ]);
-
-        $address = new Address([
-            'street' => $request->input('street'),
-            'city' => $request->input('city'),
-            'province' => $request->input('province'),
-            'zipCode' => $request->input('zipCode'),
-            'country' => $request->input('country'),
-            // Other address data
-        ]);
-
-
-        $pass = bcrypt($request->password);
 
         $user = User::create([
             'name' => $request->name,
-            'phoneNumber' => $request->phoneNumber,
-            'password' => $pass,
             'email' => $request->email,
+            'phoneNumber' => $request->phoneNumber,
+            'password' => Hash::make($request->password),
             'role' => 'donor'
         ]);
-        $user->address()->save($address);
+
+
+        Address::create([
+            'country' => $request->country,
+            'city' => $request->city,
+            'street' => $request->street,
+            'province' => $request->province,
+            'zipCode' => $request->zipCode,
+            'addressable_id' => $user->id,
+            'addressable_type' => 'App\Models\User'
+        ]);
 
         Donor::create([
             'user_id' => $user->id,
@@ -67,7 +67,6 @@ class DonorsControllers extends Controller
     {
 
         $donor_id->delete();
-        $donor_id->user->delete();
         return redirect('/admin')->with('message', 'donor deleted succesfully');
     }
 

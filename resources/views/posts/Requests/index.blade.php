@@ -3,7 +3,7 @@
     <div class="flex justify start">
         <a href="{{route('requests.create')}}">
             <x-secondary-button>
-                {{'__Create a Campaign'}}
+                {{'__Create a Blood Request'}}
             </x-secondary-button>
         </a>
     </div>
@@ -43,7 +43,7 @@
                     Required blood types:
                     <span>{{implode(', ',$request->requiredBloodTypes)}}</span>
                 </h5>
-                <div class="w-full bg-gray-300 h-2 rounded-lg mt-2">
+                <div class="w-1/2 bg-gray-300 h-2 rounded-lg mt-2">
                     <div class="bg-red-600 h-2 relative rounded-lg"
                          style="width: {{$request->progress()}}%">
                     </div>

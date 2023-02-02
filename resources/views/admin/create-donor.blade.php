@@ -60,8 +60,7 @@
             </div>
 
             <div class="mt-4">
-                <label for="bloodType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Blood Type</label>
-            <select name="bloodType" id="bloodType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select name="bloodType" id="bloodType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
               <option selected>Choose a Blood Type</option>
               <option value="A+">A+</option>
               <option value="B+">B+</option>
@@ -96,7 +95,9 @@
           </div>
 
             <div class="flex flex-col gap-2 justify-center items-center mt-4">
-                <input type="submit" value="Create" class="btn btn-outline-danger">
+                <x-primary-button type="submit" class="self-center mx-auto mt-4">
+                    {{'Create'}}
+                </x-primary-button>
             </div>
         </form>
     </div>

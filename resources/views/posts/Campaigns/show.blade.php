@@ -173,8 +173,8 @@
                                                     @csrf
 
                                                     <div>
-                                                        <div class="w-8 h-8 rounded-full overflow-hidden"
-                                                        <img src="{{asset($reply->user->profileImage)}}">
+                                                        <div class="w-8 h-8 rounded-full overflow-hidden">
+                                                        <img src="{{asset(\Illuminate\Support\Facades\Auth::user()->profileImage)}}"/>
                                                     </div>
                                                     </div>
                                                     <x-text-input placeholder="Reply to {{$comment->user->name}}" id="reply"

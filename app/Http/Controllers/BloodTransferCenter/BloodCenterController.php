@@ -5,7 +5,7 @@ namespace App\Http\Controllers\BloodTransferCenter;
 use App\Http\Controllers\Controller;
 use App\Models\BloodTransferCenter;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules;
 use App\Models\User;
 
 use App\Models\Address;
@@ -39,7 +39,7 @@ class BloodCenterController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-            'phone' => 'required|regex:/(0)[0-9]{9}/',
+            'phoneNumber' => 'required',
             'country' => ['required', 'string', 'max:20'],
             'city' => ['required', 'string', 'max:20'],
             'zipCode' => ['required', 'string', 'max:20'],
@@ -52,7 +52,7 @@ class BloodCenterController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
+            'phoneNumber' => $request->phoneNumber,
             'password' => Hash::make($request->password),
             'role' => 'center'
         ]);
@@ -70,7 +70,7 @@ class BloodCenterController extends Controller
 
         BloodTransferCenter::create(['user_id' => $user->id]);
 
-        return redirect("/center")->with('message', 'centre created successfully');
+        return redirect("/admin")->with('message', 'centre created successfully');
 
     }
 

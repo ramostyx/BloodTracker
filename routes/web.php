@@ -96,7 +96,7 @@ Route::middleware('auth')->group(function () {
 });
 
 //blood Transfer Centers Routes
-Route::middleware(['auth', 'role:centre'])->group(function () {
+Route::middleware(['auth', 'role:center'])->group(function () {
     Route::resource('/centers/bloodRequest', \App\Http\Controllers\BloodTransferCenter\BloodRequestController::class)->only(['destroy']);;
     Route::resource('/centers/bloodDonation', \App\Http\Controllers\BloodTransferCenter\BloodDonationController::class)->only(['destroy']);;
     Route::get('/centers/bloodStock', [\App\Http\Controllers\BloodTransferCenter\BloodStockController::class, 'bloodStock'])->name('bloodStock');
@@ -127,7 +127,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/admin/{center_id}', [AdminController::class, 'destroy']);
     Route::get('/center/create', [BloodCenterController::class, 'create'])->name('create-center');
     Route::post('/center/creation', [BloodCenterController::class, 'store']);
-    Route::get('/admin', [AdminController::class, 'index'])->middleware('auth', 'verified', 'role:admin')->name('admin');
     Route::delete('/admin/{center_id}', [AdminController::class, 'destroy']);
     Route::get('/admin/create_center', [BloodCenterController::class, 'create'])->name('create-center');
     Route::post('/admin/center_creation', [BloodCenterController::class, 'store']);

@@ -38,11 +38,9 @@
                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                 <div>
                                     <!--<a href="/center/create" class="button">Add Center</a> -->
-<<<<<<< HEAD
-                                    <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" onclick="window.location.href='/center/create';">
-=======
+
                                     <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" onclick="window.location.href='/admin/create_center';">
->>>>>>> 3362197eaf2833a8e14c478e0a43762ba912a8dd
+
                                         Add Center
                                       </button>
                                     </div>
@@ -53,7 +51,7 @@
                           <tr class="bg-white border-b">
                             @unless (count($centers) == 0)
                             @foreach($centers as $center)
-                            
+
                             <tr>
                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
 
@@ -90,9 +88,8 @@
                             @else
                             <div>Pas de contenu</div>
                             @endunless
-                            
-                            
-                          </tr>
+
+
                         </tbody>
                       </table>
                     </div>

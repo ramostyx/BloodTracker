@@ -224,15 +224,15 @@ class DataSeeder extends Seeder
             'user_id' => $Souss->id,
         ]);
 
-        $totalToSeed = 72; // number of records to seed
-        $seeded = 0; // number of records already seeded
+        $totalToSeed = 72;
+        $seeded = 0;
 
         while ($seeded < $totalToSeed) {
             try {
                 BloodStock::factory()->create();
                 $seeded++;
             } catch (\Exception $e) {
-                // exception occurred, do nothing and try again
+                //
             }
         }
 //        BloodStock::factory(70)->create();
@@ -241,6 +241,16 @@ class DataSeeder extends Seeder
         Client::factory(50)->create();
         BloodDonation::factory(80)->create();
         BloodRequest::factory(80)->create();
+
+        User::create([
+            'name' => 'admin',
+            'phoneNumber' => fake()->phoneNumber(),
+            'email' => fake()->unique()->safeEmail(),
+            'role' => 'admin',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
 
     }
 }

@@ -9,7 +9,7 @@
                         type="file"
                         id="profile"
                         accept="image/png, image/jpeg">
-                    <x-primary-button type="submit" class="absolute bottom-5">
+                    <x-primary-button type="submit" class="absolute bottom-24 ">
                         change profile
                     </x-primary-button>
                 </form>
@@ -36,14 +36,6 @@
             <div class="w-full px-3 py-1 flex font-bold text-left text-[15px] justify-start items-start">
                 <p> Posts: </p>
                 <p>{{\Illuminate\Support\Facades\Auth::user()->bloodtransfercenter->posts->count()}}</p>
-            </div>
-
-            <div class="block mt-1 w-1/2">
-                <input
-                    name="profile"
-                    type="file"
-                    id="profile"
-                    accept="image/png, image/jpeg">
             </div>
 
         </div>

@@ -43,7 +43,7 @@ class RequestController extends Controller
 
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
             'requiredBlood' => ['required'],
             'urgency' => ['required', 'string', 'max:255'],
 
@@ -98,7 +98,7 @@ class RequestController extends Controller
     {
         $req->validate([
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
             'requiredBlood' => ['required'],
             'urgency' => ['required', 'string', 'max:255'],
 

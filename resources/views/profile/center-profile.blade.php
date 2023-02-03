@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="grid grid-cols-3 gap-2 px-56 ">
-        <div class="h-full pb-24 bg-white col-span-1 flex flex-col justify-start items-center p-2">
+        <div class="h-full pb-24 bg-white relative col-span-1 flex flex-col justify-start items-center p-2">
             <div class="block mt-1 w-24">
                 <form action="{{route('profile.change')}}" method="POST">
                     @csrf
@@ -9,9 +9,11 @@
                         type="file"
                         id="profile"
                         accept="image/png, image/jpeg">
-                    <x-primary-button type="submit" class="absolute bottom-24 ">
-                        change profile
-                    </x-primary-button>
+                    <div class="flex justify-center absolute left-0 right-0  bottom-20 items-center">
+                        <x-primary-button type="submit" >
+                            change profile
+                        </x-primary-button>
+                    </div>
                 </form>
 
             </div>
@@ -249,6 +251,14 @@
 
         <script type="module">
             const inputElement = document.querySelector('input[id="profile"]');
+            FilePond.registerPlugin(
+                FilePondPluginFileValidateType,
+                FilePondPluginImagePreview,
+                FilePondPluginImageCrop,
+                FilePondPluginImageResize,
+                FilePondPluginImageTransform,
+                FilePondPluginImageEdit
+            );
             FilePond.create(inputElement, {
                 labelIdle: `Drag & Drop your profile image`,
                 imagePreviewHeight: 150,
@@ -262,12 +272,12 @@
                 styleButtonProcessItemPosition: 'right bottom',
             });
             FilePond.setOptions({
-            server: {
-            url: '/upload',
-            headers: {
-            'X-CSRF-TOKEN': '{{csrf_token()}}'
-            }
-            }
+                server: {
+                    url: '/upload',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{csrf_token()}}'
+                    }
+                }
             });
         </script>
     @endsection

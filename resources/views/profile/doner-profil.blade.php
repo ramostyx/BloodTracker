@@ -9,9 +9,11 @@
                         type="file"
                         id="profile"
                         accept="image/png, image/jpeg">
-                    <x-primary-button type="submit" class="absolute bottom-5">
-                        change profile
-                    </x-primary-button>
+                    <div class="flex justify-center absolute left-0 right-0  bottom-12 items-center">
+                        <x-primary-button type="submit" >
+                            change profile
+                        </x-primary-button>
+                    </div>
                 </form>
 
             </div>
@@ -172,7 +174,7 @@
                 </div>
                 <div class="tab-pane fade" id="pills-security" role="tabpanel"
                      aria-labelledby="pills-security-tab3">
-                    <form class="m-1" method="POST" action="/profile">
+                    <form class="m-1 pb-20" method="POST" action="/profile">
                         @csrf
                         <!-- CurrentPassword -->
                         <div class="my-4">

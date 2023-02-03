@@ -74,7 +74,7 @@ Route::get('/certificate', function () {
 })->name('certificate');
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/{user_id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile', [ProfileController::class, 'updatePassword'])->name('update-password');

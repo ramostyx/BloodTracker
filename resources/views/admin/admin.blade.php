@@ -5,7 +5,7 @@
 
         <li class="nav-item" role="presentation">
             <button type="button"
-                    class=" nav-link block font-medium text-xs leading-tight uppercase rounded w-full md:w-auto px-6 py-3 my-2 md:mr-2 focus:outline-none focus:ring-0 active"
+                    class="btn nav-link block font-medium text-xs leading-tight uppercase rounded w-full md:w-auto px-6 py-3 my-2 md:mr-2 focus:outline-none focus:ring-0 active"
                     id="pills-centers-tab3" data-bs-toggle="pill" data-bs-target="#pills-centers" role="tab"
                     aria-controls="pills-centers">
 
@@ -14,7 +14,7 @@
         </li>
         <li>
             <button type="button"
-                    class=" nav-link block font-medium text-xs leading-tight uppercase rounded w-full md:w-auto px-6 py-3 my-2 md:mx-2 focus:outline-none focus:ring-0"
+                    class="btn nav-link block font-medium text-xs leading-tight uppercase rounded w-full md:w-auto px-6 py-3 my-2 md:mx-2 focus:outline-none focus:ring-0"
                     id="pills-donors-tab3" data-bs-toggle="pill" data-bs-target="#pills-donors" role="tab"
                     aria-controls="pills-donors">
                 donors
@@ -28,7 +28,7 @@
                     <input
                         class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                         type="search" name="search" placeholder="Search">
-                    <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+                    <button type="submit" class="absolute btn right-0 top-0 mt-5 mr-4">
                         <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
                              viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;"
@@ -66,12 +66,11 @@
                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                         <div>
                                             <!--<a href="/center/create" class="button">Add Center</a> -->
-                                            <button
-                                                class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+                                            <x-primary-button
                                                 onclick="window.location.href='/center/create';">
                                                 Add Center
 
-                                            </button>
+                                            </x-primary-button>
                                         </div>
                                     </th>
                                 </tr>
@@ -147,12 +146,11 @@
                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                         <div>
                                             <!--<a href="/center/create" class="button">Add Center</a> -->
-
-                                            <button
-                                                class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+                                            <x-primary-button
+                                                class=""
                                                 onclick="window.location.href='/admin/create_donor';">
                                                 Add Donor
-                                            </button>
+                                            </x-primary-button>
                                         </div>
                                     </th>
                                 </tr>
@@ -207,6 +205,27 @@
             </div>
         </div>
     </div>
+
+    @section('scripts')
+        <script>
+            const buttons = document.querySelectorAll('.btn');
+
+            buttons.forEach(button => {
+                if (button.classList.contains('active')) {
+                    button.classList.add('bg-red-500');
+                }
+            });
+            const handleClick = ({target: button}) => {
+                document.querySelectorAll('.btn').forEach(btn => {
+                    btn.classList.remove('bg-red-500');
+                });
+                button.classList.add('bg-red-500');
+            };
+
+            document.querySelectorAll('.btn').forEach(button => button.addEventListener('click', handleClick));
+
+        </script>
+    @endsection
 
 
 </x-app-layout>

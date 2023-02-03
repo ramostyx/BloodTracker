@@ -51,7 +51,7 @@ class CampaignController extends Controller
 
         $request->validate([
             'title' => ['required', 'string'],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
             'startDate' => ['required'],
             'endDate' => ['required'],
             'location' => ['required', 'string', 'max:20'],
@@ -130,7 +130,7 @@ class CampaignController extends Controller
     {
         $request->validate([
             'title' => ['string'],
-            'description' => ['string', 'max:255'],
+            'description' => ['string'],
             'startDate' => [],
             'endDate' => [],
             'location' => ['string', 'max:20'],
